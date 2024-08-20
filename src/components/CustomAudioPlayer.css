@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 10px;
   left: 10px;
-  width: 340px; 
+  width: 340px;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   border-radius: 8px;
@@ -30,6 +30,10 @@
   margin-bottom: 10px;
 }
 
+.controls .MuiSvgIcon-root {
+  color: white; /* Make the icon buttons white */
+}
+
 .volume-progress-container {
   display: flex;
   flex-direction: column;
@@ -47,6 +51,7 @@
 
 .volume-control .MuiSvgIcon-root {
   margin-right: 5px;
+  color: white; /* Ensure volume icon is white as well */
 }
 
 .volume-slider {
