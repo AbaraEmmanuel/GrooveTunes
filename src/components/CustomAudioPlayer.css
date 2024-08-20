@@ -1,16 +1,15 @@
 .custom-audio-player {
   position: fixed;
-  bottom: 10px;
-  left: 10px;
-  width: 340px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  border-radius: 8px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: #282828;
+  border-radius: 0;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
 }
 
@@ -18,64 +17,43 @@
   width: 60px;
   height: 60px;
   border-radius: 4px;
-  margin-bottom: 10px;
-  object-fit: cover;
+  margin-right: 15px;
 }
 
 .controls {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.controls .MuiSvgIcon-root {
-  color: white; /* Make the icon buttons white */
-}
-
-.volume-progress-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
   align-items: center;
 }
 
 .volume-control {
   display: flex;
   align-items: center;
-  width: 100%;
-  margin-bottom: 5px;
-  justify-content: flex-start;
+  margin-left: 20px;
 }
 
-.volume-control .MuiSvgIcon-root {
-  margin-right: 5px;
-  color: white; /* Ensure volume icon is white as well */
-}
-
-.volume-slider {
-  width: 100px; /* Shortened volume slider */
-}
-
-.progress-bar {
-  width: 100%;
+.slider {
+  width: calc(100% - 200px); /* Adjust width to fit within the container */
+  margin-top: 10px;
 }
 
 @media (max-width: 600px) {
   .custom-audio-player {
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .volume-control {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .slider {
     width: 100%;
-    bottom: 0;
-    left: 0;
-    border-radius: 0;
-  }
-
-  .album-art {
-    width: 50px;
-    height: 50px;
-  }
-
-  .volume-slider {
-    width: 80px; /* Adjusted for smaller screens */
   }
 }

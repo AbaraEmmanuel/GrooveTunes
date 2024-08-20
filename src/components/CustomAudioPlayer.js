@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IconButton, Slider } from '@mui/material';
-import { PlayArrow, Pause, SkipNext, SkipPrevious, FastForward, FastRewind, VolumeUp } from '@mui/icons-material';
-import Draggable from 'react-draggable'; // Import Draggable
+import { PlayArrow, Pause, SkipNext, SkipPrevious, VolumeUp, FastForward, FastRewind } from '@mui/icons-material';
 import './CustomAudioPlayer.css';
 
-const CustomAudioPlayer = ({ currentSong, songInfo, onEnded }) => {
+const CustomAudioPlayer = ({ currentSong, songInfo, onSongEnd, onNext, onPrevious }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
@@ -29,7 +28,7 @@ const CustomAudioPlayer = ({ currentSong, songInfo, onEnded }) => {
 
       audioElement.addEventListener('ended', () => {
         setIsPlaying(false);
-        if (onEnded) onEnded();
+        if (onSongEnd) onSongEnd();
       });
 
       audioElement.addEventListener('timeupdate', () => {
@@ -40,7 +39,7 @@ const CustomAudioPlayer = ({ currentSong, songInfo, onEnded }) => {
         audioElement.removeEventListener('canplay', playAudio);
         audioElement.removeEventListener('ended', () => {
           setIsPlaying(false);
-          if (onEnded) onEnded();
+          if (onSongEnd) onSongEnd();
         });
         audioElement.removeEventListener('timeupdate', () => {
           setProgress((audioElement.currentTime / audioElement.duration) * 100);
@@ -71,47 +70,51 @@ const CustomAudioPlayer = ({ currentSong, songInfo, onEnded }) => {
     setProgress(newValue);
   };
 
-  const handleSkipNext = () => {};
-  const handleSkipPrevious = () => {};
-  const handleFastForward = () => { audioRef.current.currentTime += 10; };
-  const handleRewind = () => { audioRef.current.currentTime -= 10; };
+  const handleFastForward = () => {
+    audioRef.current.currentTime += 10;
+  };
+
+  const handleRewind = () => {
+    audioRef.current.currentTime -= 10;
+  };
 
   return (
-    <Draggable>
-      <div className="custom-audio-player">
-        <img src={songInfo?.albumArt || 'default-image-url'} alt="Album Art" className="album-art" />
-        <div className="controls">
-          <IconButton onClick={handleSkipPrevious}>
-            <SkipPrevious />
-          </IconButton>
-          <IconButton onClick={handleRewind}>
-            <FastRewind />
-          </IconButton>
-          <IconButton onClick={togglePlayPause}>
-            {isPlaying ? <Pause /> : <PlayArrow />}
-          </IconButton>
-          <IconButton onClick={handleFastForward}>
-            <FastForward />
-          </IconButton>
-          <IconButton onClick={handleSkipNext}>
-            <SkipNext />
-          </IconButton>
-        </div>
-        <div className="volume-progress-container">
-          <div className="volume-control">
-            <VolumeUp />
-            <Slider value={volume} onChange={handleVolumeChange} aria-labelledby="volume-slider" className="volume-slider" />
-          </div>
-          <div className="progress-bar">
-            <Slider value={progress} onChange={handleProgressChange} aria-labelledby="progress-slider" />
-          </div>
-        </div>
-        <audio ref={audioRef} controls style={{ display: 'none' }}>
-          <source src={currentSong} type="audio/mp3" />
-          Your browser does not support the audio element.
-        </audio>
+    <div className="custom-audio-player">
+      <img src={songInfo?.albumArt || 'default-image-url'} alt="Album Art" className="album-art" />
+      <div className="controls">
+        <IconButton onClick={onPrevious} style={{ color: 'white' }}>
+          <SkipPrevious />
+        </IconButton>
+        <IconButton onClick={handleRewind} style={{ color: 'white' }}>
+          <FastRewind />
+        </IconButton>
+        <IconButton onClick={togglePlayPause} style={{ color: 'white' }}>
+          {isPlaying ? <Pause /> : <PlayArrow />}
+        </IconButton>
+        <IconButton onClick={handleFastForward} style={{ color: 'white' }}>
+          <FastForward />
+        </IconButton>
+        <IconButton onClick={onNext} style={{ color: 'white' }}>
+          <SkipNext />
+        </IconButton>
       </div>
-    </Draggable>
+      <Slider
+        value={progress}
+        onChange={handleProgressChange}
+        aria-labelledby="progress-slider"
+        sx={{ width: 'calc(100% - 200px)', marginTop: '10px' }}
+      />
+      <div className="volume-control">
+        <VolumeUp style={{ color: 'white' }} />
+        <Slider
+          value={volume}
+          onChange={handleVolumeChange}
+          aria-labelledby="volume-slider"
+          sx={{ width: '100px', marginLeft: '10px' }}
+        />
+      </div>
+      <audio ref={audioRef} />
+    </div>
   );
 };
 
