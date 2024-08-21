@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import PasswordReset from './pages/PasswordReset';
 import Playlist from './components/Playlist';
 import ArtistSearch from './components/ArtistSearch';
+import HomePage from './components/HomePage'; // Import HomePage component
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -25,6 +26,10 @@ function App() {
           <Route
             path="/search"
             element={<PrivateRoute element={<ArtistSearch />} />}
+          />
+          <Route
+            path="/homepage"
+            element={<PrivateRoute element={<HomePage />} />} // Add this route
           />
         </Routes>
       </AuthProvider>

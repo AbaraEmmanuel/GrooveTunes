@@ -14,7 +14,7 @@ const Login = () => {
     setError('');
     try {
       await loginUser(email, password);
-      navigate('/playlist'); // Redirect to playlist page on successful login
+      navigate('/homepage'); // Redirect to playlist page on successful login
     } catch (error) {
       setError('Failed to log in. Please check your credentials.');
     }

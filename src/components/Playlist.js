@@ -3,14 +3,15 @@ import { Container, Typography, AppBar, Toolbar, Button, Box, Grid, Card, CardCo
 import { Link } from 'react-router-dom';
 import CustomAudioPlayer from './CustomAudioPlayer';
 import { fetchUserPlaylist, removeSongFromPlaylist } from '../services/playlistService';
-import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
+import { useAuth } from '../context/AuthContext';
 
 const Playlist = () => {
   const [songs, setSongs] = useState([]);
   const [playingSongId, setPlayingSongId] = useState(null);
+  const [currentSongIndex, setCurrentSongIndex] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const [currentSongInfo, setCurrentSongInfo] = useState(null);
-  const { logout } = useAuth(); // Use the logout function from context
+  const { logout } = useAuth();
 
   useEffect(() => {
     const loadPlaylist = async () => {
@@ -24,15 +25,13 @@ const Playlist = () => {
     loadPlaylist();
   }, []);
 
-  const handlePlaySong = (song) => {
+  const handlePlaySong = (song, index) => {
     const previewUrl = song.preview_url || '';
     const albumArt = song.albumArt || 'default-image-url';
     setCurrentSong(previewUrl);
-    setCurrentSongInfo({ 
-      name: song.name || 'Unknown Song', 
-      albumArt: albumArt 
-    });
+    setCurrentSongInfo({ name: song.name || 'Unknown Song', albumArt: albumArt });
     setPlayingSongId(song.id);
+    setCurrentSongIndex(index);
   };
 
   const handleRemoveFromPlaylist = async (songId) => {
@@ -50,22 +49,38 @@ const Playlist = () => {
   };
 
   const handleSongEnd = () => {
-    setPlayingSongId(null);
-    setCurrentSong(null);
-    setCurrentSongInfo(null);
+    if (currentSongIndex !== null && currentSongIndex < songs.length - 1) {
+      handlePlaySong(songs[currentSongIndex + 1], currentSongIndex + 1);
+    } else {
+      setPlayingSongId(null);
+      setCurrentSong(null);
+      setCurrentSongInfo(null);
+    }
+  };
+
+  const handleNextSong = () => {
+    if (currentSongIndex !== null && currentSongIndex < songs.length - 1) {
+      handlePlaySong(songs[currentSongIndex + 1], currentSongIndex + 1);
+    }
+  };
+
+  const handlePreviousSong = () => {
+    if (currentSongIndex !== null && currentSongIndex > 0) {
+      handlePlaySong(songs[currentSongIndex - 1], currentSongIndex - 1);
+    }
   };
 
   return (
     <>
       <AppBar position="static" sx={{ backgroundColor: '#1DB954' }}>
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Online Music Player
+          <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+            GrooveTunes
           </Typography>
           <Box>
-            <Button color="inherit" component={Link} to="/playlist">Playlist</Button>
+            <Button color="inherit" component={Link} to="/homepage">Home</Button>
             <Button color="inherit" component={Link} to="/search">Search</Button>
-            <Button color="inherit" onClick={() => logout()} sx={{ marginLeft: 2 }}> {/* Logout button */}
+            <Button color="inherit" onClick={() => logout()} sx={{ marginLeft: 5 }}>
               Logout
             </Button>
           </Box>
@@ -76,7 +91,7 @@ const Playlist = () => {
           Your Playlist
         </Typography>
         <Grid container spacing={4}>
-          {songs.map(song => (
+          {songs.map((song, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={song.id}>
               <Card sx={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}>
                 <CardContent>
@@ -91,7 +106,7 @@ const Playlist = () => {
                   <Box mt={2} display="flex" alignItems="center">
                     <img src={song.albumArt || 'default-image-url'} alt={song.name} style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '15px', objectFit: 'cover' }} />
                     <Box>
-                      <Button variant="contained" color="primary" onClick={() => handlePlaySong(song)} sx={{ mr: 1 }}>
+                      <Button variant="contained" color="primary" onClick={() => handlePlaySong(song, index)} sx={{ mr: 1 }}>
                         Play
                       </Button>
                       <Button variant="contained" color="secondary" onClick={() => handleRemoveFromPlaylist(song.id)}>
@@ -106,7 +121,13 @@ const Playlist = () => {
         </Grid>
         {currentSong && (
           <Box sx={{ position: 'fixed', bottom: 20, left: 0, right: 0, zIndex: 1300 }}>
-            <CustomAudioPlayer currentSong={currentSong} songInfo={currentSongInfo} onSongEnd={handleSongEnd} />
+            <CustomAudioPlayer
+              currentSong={currentSong}
+              songInfo={currentSongInfo}
+              onSongEnd={handleSongEnd}
+              onNext={handleNextSong}
+              onPrevious={handlePreviousSong}
+            />
           </Box>
         )}
       </Container>
