@@ -23,7 +23,6 @@ const HomePage = () => {
     const fetchHomepageTracks = async () => {
       try {
         const fetchedSongs = await fetchPopularTracks();
-        console.log('Fetched songs:', fetchedSongs); // Debug: Check fetched data
         if (Array.isArray(fetchedSongs)) {
           setSongs(fetchedSongs);
         } else {
@@ -41,7 +40,6 @@ const HomePage = () => {
     setCurrentSongInfo(songInfo);
     setPlayingSongId(songInfo.id);
     setCurrentSongIndex(index);
-    console.log('Playing song:', songInfo.name); // Debug: Check playing song info
   };
 
   const handleCardClick = (song, index) => {
@@ -97,6 +95,8 @@ const HomePage = () => {
                 <Card 
                   sx={{ 
                     borderRadius: '16px', 
+                    overflow: 'hidden', 
+                    position: 'relative', 
                     boxShadow: '0 6px 12px rgba(0, 0, 0, 0.2)', 
                     transition: 'transform 0.3s, box-shadow 0.3s', 
                     '&:hover': { 
@@ -107,7 +107,15 @@ const HomePage = () => {
                   }}
                   onClick={() => handleCardClick(song, index)}
                 >
-                  <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                  <CardContent 
+                    sx={{ 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      alignItems: 'center', 
+                      textAlign: 'center', 
+                      zIndex: 2 
+                    }}
+                  >
                     <img 
                       src={song.albumArt || 'default-image-url'} 
                       alt={song.name} 

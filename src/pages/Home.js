@@ -24,12 +24,17 @@ const Home = () => {
         minHeight="100vh"
         sx={{ textAlign: 'center' }}
       >
-        {/* Header Section */}
         <Typography
           variant="h2"
           component="h1"
           gutterBottom
-          sx={{ fontWeight: 'bold', color: '#1DB954' }}
+          sx={{
+            fontWeight: 'bold',
+            color: '#1DB954',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+            textAlign: 'center',
+            mt: 4,
+          }}
         >
           Welcome to GrooveTunes
         </Typography>

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Grid, Card, CardContent, Typography, CardActionArea, AppBar, Toolbar, IconButton, Box } from '@mui/material';
+import { TextField, Button, Container, Grid, Card, CardContent, Typography, CardActionArea, CardMedia, AppBar, Toolbar, IconButton, Box } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import CustomAudioPlayer from './CustomAudioPlayer'; // Ensure this matches the exact filename
+import CustomAudioPlayer from './CustomAudioPlayer';
 import { searchSongs } from '../services/spotifyApi';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { addSongToPlaylist } from '../services/playlistService'; // Import the correct function
-import { useAuth } from '../context/AuthContext'; // Import useAuth for logout
+import { useNavigate } from 'react-router-dom';
+import { addSongToPlaylist } from '../services/playlistService';
+import { useAuth } from '../context/AuthContext';
 
 const ArtistSearch = () => {
   const [songQuery, setSongQuery] = useState('');
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState('');
   const [currentSongInfo, setCurrentSongInfo] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate
-  const { logout } = useAuth(); // Use the logout function from context
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleSongSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const ArtistSearch = () => {
 
   const handleAddToPlaylist = async (song) => {
     try {
-      await addSongToPlaylist(song); // Use the correct function name
+      await addSongToPlaylist(song);
       alert('Song added to playlist!');
     } catch (error) {
       console.error('Error adding song to playlist:', error);
@@ -49,11 +49,9 @@ const ArtistSearch = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Song Search
           </Typography>
-          <Box>
-            <Button color="inherit" onClick={() => logout()} sx={{ marginLeft: 2 }}> {/* Logout button */}
-              Logout
-            </Button>
-          </Box>
+          <Button color="inherit" onClick={logout} sx={{ marginLeft: 2 }}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
 
@@ -99,6 +97,12 @@ const ArtistSearch = () => {
                 <Grid item xs={12} sm={6} md={4} lg={3} key={song.id}>
                   <Card sx={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}>
                     <CardActionArea onClick={() => playSong(song.preview_url, { name: song.name, albumArt: song.album.images[0].url })}>
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={song.album.images[0].url}
+                        alt={song.name}
+                      />
                       <CardContent>
                         <Typography gutterBottom variant="h6" component="div" noWrap sx={{ fontWeight: 'bold', color: '#333' }}>
                           {song.name}
@@ -113,7 +117,7 @@ const ArtistSearch = () => {
                       color="primary"
                       sx={{ width: '100%', borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent the card click event
+                        e.stopPropagation();
                         handleAddToPlaylist(song);
                       }}
                     >

@@ -48,7 +48,7 @@ async function searchArtists(artistQuery) {
 
 async function searchSongs(songQuery) {
   return fetchWebApi(
-    `v1/search?q=${encodeURIComponent(songQuery)}&type=track&limit=20`,
+    `v1/search?q=${encodeURIComponent(songQuery)}&type=track&limit=50`,
     'GET'
   );
 }
