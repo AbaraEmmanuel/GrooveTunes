@@ -17,7 +17,7 @@ const SignUp = () => {
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/login");
     } catch (err) {
-      setError('Failed to create an account. Please try again.');
+      setError('SIGNUP FAILED Ensure your password is 6 characters or more.');
     }
   };
 

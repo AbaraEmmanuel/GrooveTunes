@@ -76,7 +76,7 @@ const HomePage = () => {
           <Box>
             <Button color="inherit" component={Link} to="/playlist">Playlist</Button>
             <Button color="inherit" component={Link} to="/search">Search</Button>
-            <Button color="inherit" onClick={() => logout()} sx={{ marginLeft: 2 }}>
+            <Button color="inherit" onClick={() => logout()} sx={{ marginLeft: 5 }}>
               Logout
             </Button>
           </Box>
