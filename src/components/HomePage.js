@@ -139,7 +139,7 @@ const HomePage = () => {
               </Grid>
             ))
           ) : (
-            <Typography variant="h6" align="center">No songs available</Typography>
+            <Typography variant="h6" align="center">Loading...</Typography>
           )}
         </Grid>
         {currentSong && (
