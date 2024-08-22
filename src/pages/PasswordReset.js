@@ -14,7 +14,7 @@ const PasswordReset = () => {
     e.preventDefault();
     try {
       await sendPasswordResetEmail(auth, email);
-      setMessage('Password reset email sent!');
+      setMessage('PASSWORD RESET EMAIL SENT!');
       setTimeout(() => navigate('/login'), 3000); // Redirect after 3 seconds
     } catch (err) {
       setError('Failed to send password reset email. Please try again.');
