@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChangedListener } from '../firebase'; // Ensure this import path is correct
-import { loginUser, logoutUser } from '../firebase'; // Ensure this import path is correct
+import { onAuthStateChangedListener } from '../firebase';
+import { loginUser, logoutUser } from '../firebase';
 
 const AuthContext = createContext();
 
