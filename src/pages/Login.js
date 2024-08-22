@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Box, Typography, Paper, Grid, Alert } from '@mui/material';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useNavigate, Link } from 'react-router-dom'; 
 import { loginUser } from '../firebaseAuth';
 
 const Login = () => {
