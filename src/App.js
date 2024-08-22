@@ -6,7 +6,7 @@ import SignUp from './pages/SignUp';
 import PasswordReset from './pages/PasswordReset';
 import Playlist from './components/Playlist';
 import ArtistSearch from './components/ArtistSearch';
-import HomePage from './components/HomePage'; // Import HomePage component
+import HomePage from './components/HomePage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -29,7 +29,7 @@ function App() {
           />
           <Route
             path="/homepage"
-            element={<PrivateRoute element={<HomePage />} />} // Add this route
+            element={<PrivateRoute element={<HomePage />} />} 
           />
         </Routes>
       </AuthProvider>
