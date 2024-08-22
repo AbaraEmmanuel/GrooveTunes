@@ -32,7 +32,7 @@
 }
 
 .slider {
-  width: calc(100% - 200px); /* Adjust width to fit within the container */
+  width: calc(100% - 200px);
   margin-top: 10px;
 }
 
