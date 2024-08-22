@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, setPersistence, browserLocalPersistence, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
+// My web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBDM-ZZoGumYL519LvYh0Siw7ZLk8jOEHg",
   authDomain: "groovetunes-940db.firebaseapp.com",
