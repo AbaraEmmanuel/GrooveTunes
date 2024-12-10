@@ -39,7 +39,7 @@
 @media (max-width: 2000px) {
   .custom-audio-player {
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     padding: 5px;
   }
 
