@@ -47,7 +47,7 @@
 
   .controls {
     display: flex;
-    flex-direction: column;
+    flex-direction:row;
     /*align-items: right;
     margin-left: 170px;*/
   }
@@ -63,6 +63,6 @@
 
   .album-art {
     display: flex;
-    margin-right: 270px;
+    /*margin-right: 270px;*/
   }
 }
