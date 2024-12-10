@@ -48,8 +48,8 @@
   .controls {
     display: flex;
     flex-direction: column;
-    align-items: right;
-    margin-left: 170px;
+    /*align-items: right;
+    margin-left: 170px;*/
   }
 
   .volume-control {
