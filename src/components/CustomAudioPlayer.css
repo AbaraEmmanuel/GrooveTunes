@@ -59,7 +59,7 @@
 
   .album-art {
     display: flex;
-    flex-direction: column;
+    margin-top: 200px;
     margin-right: 270px;
   }
 }
