@@ -46,7 +46,7 @@
   .controls {
     display: flex;
     align-items: right;
-    margin-right: 10000px;
+    margin-right: 10px;
   }
 
   .volume-control {
