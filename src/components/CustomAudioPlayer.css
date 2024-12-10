@@ -45,7 +45,7 @@
   .controls {
     display: flex;
     align-items: right;
-    margin-left: 150px;
+    margin-left: 170px;
   }
 
   .volume-control {
@@ -60,6 +60,6 @@
   .album-art {
     display: flex;
     flex-direction: column;
-    margin-right: 200px;
+    margin-right: 270px;
   }
 }
