@@ -80,6 +80,7 @@ const CustomAudioPlayer = ({ currentSong, songInfo, onSongEnd, onNext, onPreviou
 
   return (
     <div className="custom-audio-player">
+      <div className='top-section'>
       <img src={songInfo?.albumArt || 'default-image-url'} alt="Album Art" className="album-art" />
       <div className="controls">
         <IconButton onClick={onPrevious} style={{ color: 'white' }}>
@@ -97,6 +98,7 @@ const CustomAudioPlayer = ({ currentSong, songInfo, onSongEnd, onNext, onPreviou
         <IconButton onClick={onNext} style={{ color: 'white' }}>
           <SkipNext />
         </IconButton>
+      </div>
       </div>
       <Slider
         value={progress}

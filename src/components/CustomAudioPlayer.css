@@ -52,6 +52,13 @@
     margin-left: 170px;*/
   }
 
+  .top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   .volume-control {
     margin-left: 0;
     margin-top: 0px;
