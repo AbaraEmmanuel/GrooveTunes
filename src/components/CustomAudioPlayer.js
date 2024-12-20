@@ -105,6 +105,7 @@ const CustomAudioPlayer = ({ currentSong, songInfo, onSongEnd, onNext, onPreviou
         onChange={handleProgressChange}
         aria-labelledby="progress-slider"
         sx={{ width: 'calc(100% - 200px)', marginTop: '10px' }}
+        className="sliders"
       />
       <div className="volume-control">
         <VolumeUp style={{ color: 'white' }} />
