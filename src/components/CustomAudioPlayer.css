@@ -45,6 +45,7 @@
 }
 
 .slider {
+  display: flex;
   width: calc(100% - 200px);
   margin-top: 10px;
 }
