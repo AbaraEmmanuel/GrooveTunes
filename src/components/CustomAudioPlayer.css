@@ -36,7 +36,7 @@
   margin-top: 10px;
 }
 
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   .custom-audio-player {
     display: flex;
     align-items: center;
@@ -48,8 +48,8 @@
   .controls {
     display: flex;
     flex-direction:row;
-    /*align-items: right;
-    margin-left: 170px;*/
+    /**align-items: right;
+    margin-left: 170px;/
   }
 
   .top-section {
@@ -73,6 +73,69 @@
 
   .album-art {
     display: flex;
-    /*margin-right: 270px;*/
+    /*margin-right: 270px;/
   }
-}
+ */
+
+ @media (max-width: 768px) {   
+  .custom-audio-player { 
+    display: flex; 
+    flex-direction: column; /* Stack elements vertically */ 
+    align-items: center; 
+    justify-content: center; 
+    padding: 10px; 
+    gap: 10px; 
+    background-color: #222; /* Example background color for the dark box */ 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  } 
+
+  .top-section { 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    width: 100%; 
+    gap: 10px; 
+  } 
+
+  .album-art { 
+    width: 60px; 
+    height: 60px; 
+    object-fit: cover; 
+    border-radius: 5px; 
+  } 
+
+  .controls { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 10px; 
+    justify-content: flex-start; 
+  } 
+
+  .volume-control { 
+    display: none; /* Hide the volume bar on smaller screens */ 
+  } 
+
+  .slider { 
+    width: 100%; 
+    margin-top: 10px; 
+    background: #444; /* Example styling for the progress bar */ 
+    border-radius: 5px; 
+  } 
+
+  .progress-bar { 
+    height: 5px; 
+    width: 100%; 
+    background: #666; 
+    position: relative; 
+    border-radius: 5px; 
+    overflow: hidden; 
+  } 
+
+  .progress-bar-fill { 
+    height: 5px; 
+    background: #f90; 
+    width: 50%; /* Example: Adjust dynamically with JS */ 
+    transition: width 0.3s ease; 
+  } 
+} 
