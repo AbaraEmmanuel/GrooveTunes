@@ -35,7 +35,7 @@
 }
 
 .slider {
-  width: calc(100% - 200px);
+  width: 200%/*calc(100% - 200px)*/;
   margin: 0 20px;
   background-color: #333; /* Background color for progress bar */
 }
