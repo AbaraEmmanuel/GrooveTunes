@@ -83,19 +83,19 @@ const CustomAudioPlayer = ({ currentSong, songInfo, onSongEnd, onNext, onPreviou
       <div className='top-section'>
       <img src={songInfo?.albumArt || 'default-image-url'} alt="Album Art" className="album-art" />
       <div className="controls">
-        <IconButton onClick={onPrevious} style={{ color: 'white' }}>
+        <IconButton onClick={onPrevious} style={{ color: 'white' }} aria-label="Previous">
           <SkipPrevious />
         </IconButton>
-        <IconButton onClick={handleRewind} style={{ color: 'white' }}>
+        <IconButton onClick={handleRewind} style={{ color: 'white' }} aria-label="Rewind">
           <FastRewind />
         </IconButton>
-        <IconButton onClick={togglePlayPause} style={{ color: 'white' }}>
+        <IconButton onClick={togglePlayPause} style={{ color: 'white' }} aria-label="Play/Pause">
           {isPlaying ? <Pause /> : <PlayArrow />}
         </IconButton>
-        <IconButton onClick={handleFastForward} style={{ color: 'white' }}>
+        <IconButton onClick={handleFastForward} style={{ color: 'white' }} aria-label="FastForward">
           <FastForward />
         </IconButton>
-        <IconButton onClick={onNext} style={{ color: 'white' }}>
+        <IconButton onClick={onNext} style={{ color: 'white' }} ria-label="Next">
           <SkipNext />
         </IconButton>
       </div>
